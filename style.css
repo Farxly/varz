@@ -1,0 +1,128 @@
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  font-family: "Poppins", sans-serif;
+  overflow: hidden;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4, #a18cd1, #fbc2eb);
+  background-size: 400% 400%;
+  animation: gradientMove 15s ease infinite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* bintang kelip */
+.stars {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: transparent url('https://i.ibb.co/7QpKsCX/stars.png') repeat top center;
+  animation: moveStars 200s linear infinite;
+}
+
+@keyframes moveStars {
+  from {background-position: 0 0;}
+  to {background-position: -10000px 5000px;}
+}
+
+.container {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+  position: relative;
+  z-index: 1;
+}
+
+#question {
+  font-size: 26px;
+  margin-bottom: 20px;
+  animation: fadeIn 2s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateY(-20px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+button {
+  padding: 10px 25px;
+  font-size: 18px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.3s;
+}
+
+#yesBtn {
+  background-color: #ff4d6d;
+  color: white;
+  box-shadow: 0 0 10px #ff4d6d;
+}
+
+#yesBtn:hover {
+  transform: scale(1.1);
+}
+
+#noBtn {
+  background-color: #444;
+  color: white;
+  position: absolute;
+}
+
+#message {
+  margin-top: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #d6336c;
+}
+
+.heartbeat {
+  animation: heartbeat 1s infinite;
+}
+
+@keyframes heartbeat {
+  0% { transform: scale(1); }
+  25% { transform: scale(1.2); }
+  50% { transform: scale(1); }
+  75% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+.emoji {
+  position: absolute;
+  font-size: 24px;
+  animation: fall linear forwards;
+}
+
+@keyframes fall {
+  0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(110vh) rotate(360deg); opacity: 0.7; }
+}
+
+#nglBtn {
+  display: none;
+  margin-top: 15px;
+  padding: 10px 20px;
+  font-size: 18px;
+  text-decoration: none;
+  color: white;
+  background: #ff4d6d;
+  border-radius: 12px;
+  box-shadow: 0 0 10px #ff4d6d;
+}
