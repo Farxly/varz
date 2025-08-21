@@ -1,0 +1,118 @@
+:root{
+  --bg1:#0f1220;
+  --bg2:#1a1f36;
+  --accent:#ff4d6d;
+  --text:#fff;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: ui-rounded, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Color Emoji", "Apple Color Emoji", sans-serif;
+  color:var(--text);
+  background: radial-gradient(1100px 700px at 15% 20%, #17203a 0%, transparent 60%),
+              radial-gradient(900px 600px at 85% 30%, #1f1b2e 0%, transparent 60%),
+              linear-gradient(135deg, var(--bg1), var(--bg2));
+  overflow:hidden;
+}
+
+/* Card pertanyaan */
+.container{
+  position:relative; height:100%; display:flex; align-items:center; justify-content:center; padding:24px;
+}
+#card{
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 28px;
+  padding: 28px 22px 26px;
+  text-align:center;
+  max-width: 520px;
+  width: 100%;
+  box-shadow: 0 20px 60px rgba(0,0,0,.35);
+  animation: floaty 4s ease-in-out infinite;
+}
+@keyframes floaty {0%,100%{transform: translateY(0)}50%{transform: translateY(-6px)}}
+h1{margin:0 0 12px;font-size:clamp(26px,5.2vw,42px);line-height:1.1}
+.sub{margin:0 0 18px;opacity:.85}
+
+.btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+button{border:none;cursor:pointer;font-weight:700;padding:14px 22px;border-radius:999px;font-size:18px;transition: transform .2s ease, box-shadow .2s ease}
+#yesBtn{background:var(--accent);color:#fff;box-shadow:0 8px 20px rgba(255,77,109,.35)}
+#yesBtn:active{transform:scale(.96)}
+#noBtn{background:#2b2f46;color:#fff;border:1px solid rgba(255,255,255,.15)}
+
+/* Layar “Thank you” */
+.overlay{position:fixed;inset:0;display:none;place-items:center;background:transparent}
+.overlay.show{display:grid}
+
+.thankyou{position:relative;z-index:2;text-align:center;color:#ffd1dc;text-shadow:0 2px 0 rgba(255,255,255,.08);animation:pop .7s ease forwards}
+@keyframes pop{from{transform:scale(.85);opacity:0}to{transform:scale(1);opacity:1}}
+.thankyou h2{font-size:clamp(28px,5vw,44px);margin:10px 0 0}
+.thankyou p{font-size:clamp(18px,3.4vw,22px);margin:8px 0 0}
+
+/* Jantung berdetak (beneran bentuk hati) */
+.heart{
+  width:96px;height:86px;position:relative;margin:0 auto 12px;transform:rotate(-45deg);
+  animation:beat 1s infinite ease-in-out; filter: drop-shadow(0 10px 18px rgba(255,77,109,.45));
+}
+.heart,.heart::before,.heart::after{background:var(--accent)}
+.heart::before,.heart::after{content:"";position:absolute;width:96px;height:86px;border-radius:50%}
+.heart::before{top:-48px;left:0}
+.heart::after{left:48px;top:0}
+@keyframes beat{0%,100%{transform:rotate(-45deg) scale(1)}50%{transform:rotate(-45deg) scale(1.15)}}
+
+/* Layer untuk love/bunga jatuh */
+.flowers{position:fixed;inset:0;overflow:hidden;z-index:1;pointer-events:none}
+.love{
+  position:absolute; bottom:-10vh; font-size:22px; opacity:.98;
+  transform: translateY(0) rotate(var(--rot));
+  animation: rise var(--dur) linear forwards;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,.25));
+}
+@keyframes rise{
+  to{ transform: translateY(-120vh) rotate(calc(var(--rot) + 180deg)); opac
+ity:.0}
+}
+
+/* === NGL BUTTON (DITAMBAHKAN SESUAI PERMINTAAN) === */
+.ngl-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  z-index: 7;
+  margin-top: 12px;
+}
+
+/* gaya tombol NGL — gunakan <a class="ngl-btn" href="https://ngl.link/farxly">Confess</a> di HTML */
+.ngl-btn {
+  display: inline-block;
+  text-decoration: none;
+  padding: 12px 28px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 800;
+  font-size: 16px;
+  box-shadow: 0 10px 30px rgba(255,77,109,0.18);
+  transition: transform .18s ease, box-shadow .18s ease, opacity .12s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.ngl-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 40px rgba(255,77,109,0.28);
+}
+
+.ngl-btn:active {
+  transform: scale(.98);
+  opacity: 0.95;
+}
+
+/* jika tombol ditempatkan di dalam #card, tambahkan margin kecil */
+#card .ngl-btn {
+  margin-top: 16px;
+}
+
+/* Scrollbar hilang */
+::-webkit-scrollbar{width:0;height:0}
