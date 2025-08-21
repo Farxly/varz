@@ -1,38 +1,36 @@
-const card = document.getElementById('card');
-const yesBtn = document.getElementById('yesBtn');
-const noBtn  = document.getElementById('noBtn');
-const overlay = document.getElementById('overlay');
-const flowersLayer = document.getElementById('flowers');
+const yesBtn = document.querySelector('.yes');
+const noBtn = document.querySelector('.no');
+const question = document.querySelector('.question');
+const buttons = document.querySelector('.buttons');
+const result = document.querySelector('.result');
 
-/* === NO BUTTON: selalu kabur + mengecil tiap klik === */
-let noScale = 1;
-noBtn.addEventListener('click', () => {
-  // pindah ke posisi random
-  const x = Math.random() * (window.innerWidth - noBtn.offsetWidth - 20) + 10;
-  const y = Math.random() * (window.innerHeight - noBtn.offsetHeight - 20) + 10;
+// tombol no ngelak
+noBtn.addEventListener('mouseenter', () => {
+  const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+  const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
   noBtn.style.position = 'fixed';
   noBtn.style.left = `${x}px`;
-  noBtn.style.top  = `${y}px`;
-
-  // mengecil terus
-  noScale = Math.max(0.25, noScale * 0.9);
-  noBtn.style.transform = `scale(${noScale})`;
+  noBtn.style.top = `${y}px`;
 });
 
-/* === YES BUTTON: ganti ke layar thank you + hujan love/bunga nonstop === */
+// klik yes
 yesBtn.addEventListener('click', () => {
-  // sembunyikan kartu
-  card.style.opacity = '0';
-  card.style.transform = 'scale(0.98)';
-  setTimeout(() => {
-    card.style.display = 'none';
-    showCelebration();
-  }, 220);
+  question.style.display = 'none';
+  buttons.style.display = 'none';
+  result.style.display = 'flex';
+  spawnEmojis();
+  setInterval(spawnEmojis, 1200);
 });
 
-function showCelebration(){
-  overlay.classList.add('show');
-  startLoveRain(); // mulai love rain tanpa henti
+function spawnEmojis() {
+  const emojis = ['❤️','💖','💘','🌹','🥰','💞','💕','💓'];
+  const emoji = document.createElement('div');
+  emoji.classList.add('falling');
+  emoji.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+  emoji.style.left = Math.random() * 100 + 'vw';
+  emoji.style.animationDuration = (Math.random() * 3 + 3) + 's';
+  document.body.appendChild(emoji);
+  setTimeout(() => emoji.remove(), 6000);
 }
 
 /* === LOVE RAIN: super meriah & tidak kelar-kelar === */
